@@ -45,6 +45,7 @@ h2{color:var(--purple);font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:12px}
 .week .wt{color:var(--purple);font-weight:700;font-size:1.15rem;display:block;margin-bottom:6px}
 .week .wd{color:var(--muted);font-size:.95rem;display:block}
 #weekPage{display:none;max-width:900px;margin:0 auto;padding:50px 6% 70px}
+#pdfPage .btn,#weekPage .btn{margin-bottom:26px;padding:10px 22px}
 #weekPage .btn{margin-bottom:26px;padding:10px 22px}
 #weekPage h2{margin-bottom:8px}
 .days{display:grid;gap:18px;margin-top:30px}
@@ -57,6 +58,30 @@ footer{background:linear-gradient(90deg,#5b2a86,#c2478a);color:#fff;text-align:c
 footer b{font-size:1.15rem;display:block}
 footer span{display:block;opacity:.92;margin-top:4px}
 @media(max-width:600px){header{justify-content:center;text-align:center}.hero{padding:60px 6% 55px}section.block{padding:50px 6%}nav button{padding:6px 14px;font-size:.85rem}}
+
+.panel{margin-top:34px}
+.panel h3.sec{color:var(--purple);font-size:1.4rem;margin-bottom:6px}
+.note{color:var(--muted);font-size:.88rem;margin:8px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px}
+.btn-sm{font:inherit;font-size:.92rem;font-weight:600;border-radius:999px;padding:9px 20px;cursor:pointer;border:2px solid var(--purple);background:#fff;color:var(--purple);text-decoration:none;display:inline-block;transition:.2s}
+.btn-sm:hover{background:var(--purple);color:#fff}
+.btn-sm.fill{background:linear-gradient(90deg,#5b2a86,#c2478a);color:#fff;border-color:transparent}
+.btn-sm.danger{border-color:#b3261e;color:#b3261e}
+.btn-sm.danger:hover{background:#b3261e;color:#fff}
+.btn-sm:disabled{opacity:.45;cursor:not-allowed}
+.btn-sm:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.hidden-input{display:none}
+.thumbs,.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px}
+.thumb{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#fff}
+.thumb img{width:100%;height:130px;object-fit:cover;display:block;cursor:zoom-in}
+.thumb .x{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:none;background:rgba(45,32,56,.8);color:#fff;font-size:1rem;line-height:1;cursor:pointer}
+.thumb .rm{display:block;width:100%;border:none;border-top:1px solid var(--border);background:#fff;color:#b3261e;font:inherit;font-size:.85rem;padding:7px;cursor:pointer}
+.status{font-size:.92rem;margin-top:10px;font-weight:600}
+.status.ok{color:#1d7a46}.status.err{color:#b3261e}
+.pdfbox{width:100%;height:70vh;border:1px solid var(--border);border-radius:14px;margin-top:16px;background:#fff}
+#lb{position:fixed;inset:0;background:rgba(20,10,30,.88);display:none;align-items:center;justify-content:center;z-index:100;padding:20px;cursor:zoom-out}
+#lb img{max-width:100%;max-height:100%;border-radius:12px}
+@media(max-width:700px){.pdfbox{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -69,6 +94,7 @@ footer span{display:block;opacity:.92;margin-top:4px}
     <button onclick="goTo('about')">About</button>
     <button onclick="goTo('objectives')">Objectives</button>
     <button onclick="goTo('weeks')">Weeks</button>
+    <button onclick="openPdf()">📄 CSP PDF</button>
   </nav>
 </header>
 
@@ -118,6 +144,8 @@ footer span{display:block;opacity:.92;margin-top:4px}
 </main>
 
 <main id="weekPage"></main>
+<main id="pdfPage" style="display:none;max-width:900px;margin:0 auto;padding:50px 6% 70px"></main>
+<div id="lb" onclick="closeLb()"><img alt="Enlarged photo"></div>
 
 <footer>
   <b>She Rises · Women Empowerment CSP</b>
@@ -129,7 +157,7 @@ footer span{display:block;opacity:.92;margin-top:4px}
 /* ---------- WEEK DATA ----------
    To add a photo, set img on a day, e.g. img:"photos/week1-day1.jpg"
    (upload the photo to your GitHub repo next to index.html).
-   Week 8: replace title/desc and add days when ready. */
+*/
 const weeks = [
  {title:"Sachivalayam Visit", desc:"Understanding government services and women's welfare schemes.", days:[
   {t:"Introduction",a:"Visited Sachivalayam.",l:"Basic services.",img:""},
@@ -180,11 +208,18 @@ const weeks = [
   {t:"Financial Awareness",a:"Explained saving money.",l:"Money management.",img:""},
   {t:"Self-Employment",a:"Discussed small businesses.",l:"Business opportunities.",img:""},
   {t:"Documentation",a:"Collected photos and details.",l:"",img:""}]},
- {title:"Title to be added", desc:"Description to be added.", days:[]}
+ {title:"Building This Website", desc:"Planning, designing and publishing the She Rises website to share our CSP journey with the community.", days:[
+  {t:"Planning & Content",a:"Decided the purpose, sections and content of the website using our Week 1 to 7 work.",l:"Organising information clearly.",img:""},
+  {t:"Design & Colours",a:"Chose the purple and pink theme, fonts and layout.",l:"Basics of visual design.",img:""},
+  {t:"Building the Pages",a:"Created the home, about, objectives and weeks sections using HTML and CSS.",l:"How web pages are structured.",img:""},
+  {t:"Adding Features",a:"Added week pages, day cards and photo upload using JavaScript.",l:"How interactive features work.",img:""},
+  {t:"Testing & Mobile View",a:"Tested the website on phone and computer and fixed problems.",l:"Importance of testing.",img:""},
+  {t:"Publishing Online",a:"Uploaded the project to GitHub and published it online.",l:"Sharing work with everyone.",img:""}]}
 ];
 
 const mainPage = document.getElementById("mainPage");
 const weekPage = document.getElementById("weekPage");
+const pdfPage = document.getElementById("pdfPage");
 const grid = document.getElementById("weekGrid");
 
 function el(tag, cls, text){
@@ -193,6 +228,48 @@ function el(tag, cls, text){
   if(text !== undefined) e.textContent = text;
   return e;
 }
+function fmtSize(b){ return b > 1048576 ? (b/1048576).toFixed(1)+" MB" : Math.max(1,Math.round(b/1024))+" KB"; }
+
+/* ---------- Storage (IndexedDB, saved in this browser) ---------- */
+let dbp = null;
+function openDB(){
+  if(dbp) return dbp;
+  dbp = new Promise((res, rej) => {
+    if(!window.indexedDB) return rej(new Error("This browser does not support saving files."));
+    const r = indexedDB.open("sherises", 1);
+    r.onupgradeneeded = () => r.result.createObjectStore("files", {keyPath:"id"});
+    r.onsuccess = () => res(r.result);
+    r.onerror = () => rej(r.error || new Error("Could not open storage."));
+  });
+  return dbp;
+}
+function tx(mode, fn){
+  return openDB().then(db => new Promise((res, rej) => {
+    const t = db.transaction("files", mode);
+    const rq = fn(t.objectStore("files"));
+    t.oncomplete = () => res(rq && rq.result);
+    t.onerror = t.onabort = () => rej(t.error || new Error("Not enough storage space."));
+  }));
+}
+const dbPut = rec => tx("readwrite", s => s.put(rec));
+const dbDel = id => tx("readwrite", s => s.delete(id));
+const dbAll = () => tx("readonly", s => s.getAll());
+
+/* ---------- Views ---------- */
+function show(v){
+  mainPage.style.display = v === "main" ? "block" : "none";
+  weekPage.style.display = v === "week" ? "block" : "none";
+  pdfPage.style.display = v === "pdf" ? "block" : "none";
+}
+function goTo(id){
+  show("main");
+  const t = document.getElementById(id);
+  if(id === "home") window.scrollTo({top:0, behavior:"smooth"});
+  else if(t) t.scrollIntoView({behavior:"smooth"});
+}
+function openLb(src){ const lb = document.getElementById("lb"); lb.querySelector("img").src = src; lb.style.display = "flex"; }
+function closeLb(){ document.getElementById("lb").style.display = "none"; }
+document.addEventListener("keydown", e => { if(e.key === "Escape") closeLb(); });
 
 weeks.forEach((w, i) => {
   const b = el("button", "card week");
@@ -202,6 +279,29 @@ weeks.forEach((w, i) => {
   b.onclick = () => openWeek(i);
   grid.appendChild(b);
 });
+
+/* ---------- Image compression ---------- */
+function compressImage(file){
+  return new Promise((res, rej) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      const sc = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight));
+      const w = Math.round(img.naturalWidth * sc), h = Math.round(img.naturalHeight * sc);
+      const c = document.createElement("canvas"); c.width = w; c.height = h;
+      const ctx = c.getContext("2d");
+      ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(img, 0, 0, w, h);
+      c.toBlob(b => { URL.revokeObjectURL(url); b ? res(b) : rej(new Error("Could not process " + file.name)); }, "image/jpeg", 0.82);
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); rej(new Error("Could not read " + file.name + " (use JPG or PNG)")); };
+    img.src = url;
+  });
+}
+
+/* ---------- Week page ---------- */
+let galleryUrls = [];
+function setStatus(node, msg, ok){ node.textContent = msg; node.className = "status " + (msg ? (ok ? "ok" : "err") : ""); }
 
 function openWeek(i){
   const w = weeks[i];
@@ -213,9 +313,6 @@ function openWeek(i){
   weekPage.appendChild(el("h2", "", w.title));
   weekPage.appendChild(el("p", "lead", w.desc));
   const days = el("div", "days");
-  if(!w.days.length){
-    days.appendChild(el("p", "empty", "Activities for this week will be added soon."));
-  }
   w.days.forEach((d, n) => {
     const c = el("div", "card day");
     c.appendChild(el("h3", "", "Day " + (n + 1) + ": " + d.t));
@@ -232,17 +329,163 @@ function openWeek(i){
     days.appendChild(c);
   });
   weekPage.appendChild(days);
-  mainPage.style.display = "none";
-  weekPage.style.display = "block";
+  weekPage.appendChild(buildPhotoPanel(i));
+  show("week");
   window.scrollTo({top:0, behavior:"auto"});
+  loadGallery(i);
 }
 
-function goTo(id){
-  weekPage.style.display = "none";
-  mainPage.style.display = "block";
-  const t = document.getElementById(id);
-  if(id === "home") window.scrollTo({top:0, behavior:"smooth"});
-  else if(t) t.scrollIntoView({behavior:"smooth"});
+function buildPhotoPanel(i){
+  const panel = el("div", "card panel");
+  panel.appendChild(el("h3", "sec", "📷 Week " + (i + 1) + " Photos"));
+  panel.appendChild(el("p", "note", "Choose photos, check the preview, then press Save Photos. Saved photos are kept in this browser on this device."));
+
+  const input = el("input", "hidden-input"); input.type = "file"; input.accept = "image/*"; input.multiple = true; input.id = "photoInput";
+  const choose = el("label", "btn-sm", "Choose Photos"); choose.setAttribute("for", "photoInput"); choose.tabIndex = 0;
+  choose.onkeydown = e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); input.click(); } };
+  const save = el("button", "btn-sm fill", "Save Photos"); save.disabled = true;
+  const clear = el("button", "btn-sm", "Clear"); clear.disabled = true;
+  const row = el("div", "row"); row.append(choose, save, clear);
+  const thumbs = el("div", "thumbs");
+  const status = el("p", "status");
+  const gtitle = el("h3", "sec", "Saved Photos"); gtitle.style.marginTop = "28px";
+  const gallery = el("div", "gallery"); gallery.id = "gallery";
+  panel.append(input, row, thumbs, status, gtitle, gallery);
+
+  let pending = [];
+  function renderPending(){
+    thumbs.innerHTML = "";
+    pending.forEach((p, k) => {
+      const t = el("div", "thumb");
+      const im = el("img"); im.src = p.url; im.alt = p.file.name; im.onclick = () => openLb(p.url);
+      const x = el("button", "x", "×"); x.title = "Remove"; x.setAttribute("aria-label", "Remove this photo");
+      x.onclick = () => { URL.revokeObjectURL(p.url); pending.splice(k, 1); renderPending(); };
+      t.append(im, x); thumbs.appendChild(t);
+    });
+    save.disabled = clear.disabled = pending.length === 0;
+  }
+  input.onchange = () => {
+    setStatus(status, "");
+    Array.from(input.files).forEach(f => { if(f.type.startsWith("image/")) pending.push({file:f, url:URL.createObjectURL(f)}); });
+    input.value = "";
+    renderPending();
+  };
+  clear.onclick = () => { pending.forEach(p => URL.revokeObjectURL(p.url)); pending = []; renderPending(); setStatus(status, ""); };
+  save.onclick = async () => {
+    save.disabled = clear.disabled = true;
+    setStatus(status, "Saving…", true);
+    let done = 0, errors = [];
+    for(const p of pending){
+      try{
+        const blob = await compressImage(p.file);
+        await dbPut({id:"photo-" + i + "-" + Date.now() + "-" + Math.random().toString(36).slice(2,8), kind:"photo", week:i, name:p.file.name, ts:Date.now(), blob});
+        done++;
+      }catch(err){ errors.push(err.message); }
+      URL.revokeObjectURL(p.url);
+    }
+    pending = []; renderPending();
+    if(errors.length) setStatus(status, (done ? done + " saved. " : "") + errors[0], false);
+    else setStatus(status, "✔ " + done + " photo" + (done > 1 ? "s" : "") + " saved to Week " + (i + 1), true);
+    loadGallery(i);
+  };
+  return panel;
+}
+
+async function loadGallery(i){
+  const g = document.getElementById("gallery");
+  if(!g) return;
+  galleryUrls.forEach(u => URL.revokeObjectURL(u)); galleryUrls = [];
+  g.innerHTML = "";
+  let items = [];
+  try{ items = (await dbAll()).filter(r => r.kind === "photo" && r.week === i).sort((a, b) => a.ts - b.ts); }
+  catch(err){ g.style.display = "block"; g.appendChild(el("p", "status err", err.message)); return; }
+  g.style.display = "";
+  if(!items.length){ g.style.display = "block"; g.appendChild(el("p", "note", "No photos saved for this week yet.")); return; }
+  items.forEach(r => {
+    const url = URL.createObjectURL(r.blob); galleryUrls.push(url);
+    const t = el("div", "thumb");
+    const im = el("img"); im.src = url; im.alt = "Week " + (i + 1) + " photo"; im.loading = "lazy"; im.onclick = () => openLb(url);
+    const rm = el("button", "rm", "Remove");
+    rm.onclick = async () => { if(confirm("Remove this photo?")){ try{ await dbDel(r.id); }catch(e){} loadGallery(i); } };
+    t.append(im, rm); g.appendChild(t);
+  });
+}
+
+/* ---------- CSP PDF page ---------- */
+let pdfUrl = null;
+async function openPdf(){
+  pdfPage.innerHTML = "";
+  const back = el("button", "btn btn-outline", "← Back to Home");
+  back.onclick = () => goTo("home");
+  pdfPage.appendChild(back);
+  pdfPage.appendChild(el("p", "label", "Project document"));
+  pdfPage.appendChild(el("h2", "", "CSP Report (PDF)"));
+  pdfPage.appendChild(el("p", "lead", "Add the PDF of our Community Service Project here. Choose the file, then press Save PDF."));
+
+  const panel = el("div", "card");
+  const input = el("input", "hidden-input"); input.type = "file"; input.accept = "application/pdf,.pdf"; input.id = "pdfInput";
+  const choose = el("label", "btn-sm", "Choose PDF"); choose.setAttribute("for", "pdfInput"); choose.tabIndex = 0;
+  choose.onkeydown = e => { if(e.key === "Enter" || e.key === " "){ e.preventDefault(); input.click(); } };
+  const save = el("button", "btn-sm fill", "Save PDF"); save.disabled = true;
+  const row = el("div", "row"); row.append(choose, save);
+  const picked = el("p", "note", "No file chosen.");
+  const status = el("p", "status");
+  const view = el("div");
+  panel.append(row, picked, status, input);
+  pdfPage.append(panel, view);
+  panel.appendChild(el("p", "note", "Saved PDFs are kept in this browser on this device. To show the PDF to every visitor, upload it to your GitHub repository with the name csp.pdf."));
+
+  let file = null;
+  input.onchange = () => {
+    const f = input.files[0]; input.value = ""; setStatus(status, "");
+    if(!f) return;
+    if(f.type !== "application/pdf" && !/\.pdf$/i.test(f.name)){ file = null; save.disabled = true; picked.textContent = "No file chosen."; setStatus(status, "Please choose a PDF file.", false); return; }
+    if(f.size > 40 * 1048576){ file = null; save.disabled = true; setStatus(status, "File is too large (limit 40 MB).", false); return; }
+    file = f; save.disabled = false; picked.textContent = "Selected: " + f.name + " (" + fmtSize(f.size) + ")";
+  };
+  save.onclick = async () => {
+    if(!file) return;
+    save.disabled = true; setStatus(status, "Saving…", true);
+    try{
+      await dbPut({id:"csp-pdf", kind:"pdf", name:file.name, ts:Date.now(), blob:new Blob([file], {type:"application/pdf"})});
+      setStatus(status, "✔ PDF saved", true); picked.textContent = "No file chosen."; file = null;
+      renderPdf(view);
+    }catch(err){ setStatus(status, err.message, false); save.disabled = false; }
+  };
+  show("pdf");
+  window.scrollTo({top:0, behavior:"auto"});
+  renderPdf(view);
+}
+
+async function renderPdf(view){
+  if(pdfUrl && pdfUrl.indexOf("blob:") === 0) URL.revokeObjectURL(pdfUrl);
+  pdfUrl = null; view.innerHTML = "";
+  let rec = null, name = "", size = "", local = false;
+  try{ rec = (await dbAll()).find(r => r.id === "csp-pdf"); }catch(e){}
+  if(rec){ pdfUrl = URL.createObjectURL(rec.blob); name = rec.name; size = fmtSize(rec.blob.size); local = true; }
+  else{
+    try{
+      const r = await fetch("csp.pdf", {cache:"no-cache"});
+      if(r.ok && (r.headers.get("content-type") || "").toLowerCase().indexOf("pdf") !== -1){ pdfUrl = "csp.pdf"; name = "csp.pdf"; }
+    }catch(e){}
+  }
+  if(!pdfUrl){ view.appendChild(el("p", "note", "No PDF added yet.")); return; }
+  const card = el("div", "card panel");
+  card.appendChild(el("h3", "sec", "📄 " + name));
+  if(size) card.appendChild(el("p", "note", size));
+  const row = el("div", "row");
+  const open = el("a", "btn-sm fill", "Open PDF"); open.href = pdfUrl; open.target = "_blank"; open.rel = "noopener";
+  const dl = el("a", "btn-sm", "Download"); dl.href = pdfUrl; dl.download = name;
+  row.append(open, dl);
+  if(local){
+    const rm = el("button", "btn-sm danger", "Remove");
+    rm.onclick = async () => { if(confirm("Remove the saved PDF?")){ try{ await dbDel("csp-pdf"); }catch(e){} renderPdf(view); } };
+    row.appendChild(rm);
+  }
+  card.appendChild(row);
+  const frame = el("iframe", "pdfbox"); frame.src = pdfUrl; frame.title = "CSP PDF";
+  card.appendChild(frame);
+  view.appendChild(card);
 }
 </script>
 </body>
