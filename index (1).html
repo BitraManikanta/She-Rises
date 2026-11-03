@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>She Rises | Women Empowerment CSP</title>
+<meta name="description" content="She Rises – a Women Empowerment Community Service Project.">
+<style>
+:root{--purple:#5b2a86;--pink:#c2478a;--text:#2d2038;--muted:#6b5f78;--bg:#faf6fb;--card:#fff;--border:#eadff0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:"Segoe UI",system-ui,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:inherit}
+header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg,#5b2a86,#c2478a);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:12px 5%;box-shadow:0 2px 12px rgba(91,42,134,.25)}
+.brand{cursor:pointer;line-height:1.1}
+.brand b{font-size:1.7rem;font-weight:700;display:block}
+.brand small{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav button{font:inherit;font-size:.9rem;font-weight:600;color:#fff;background:rgba(255,255,255,.15);border:1.5px solid #fff;border-radius:999px;padding:7px 18px;cursor:pointer;transition:.2s}
+nav button:hover,nav button:focus-visible{background:#fff;color:var(--purple);outline:none}
+.hero{background:linear-gradient(135deg,#f3e6fa,#fde7f1);text-align:center;padding:90px 6% 80px}
+.hero .tag{color:var(--pink);font-weight:600;margin-bottom:14px}
+.hero h1{color:var(--purple);font-size:clamp(2rem,5.5vw,3.6rem);line-height:1.15;margin-bottom:20px}
+.hero p.intro{max-width:680px;margin:0 auto 30px;color:var(--muted);font-size:1.1rem}
+.btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;border-radius:999px;padding:13px 28px;cursor:pointer;text-decoration:none;transition:.2s;display:inline-block}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(91,42,134,.2)}
+.btn-primary{background:linear-gradient(90deg,#5b2a86,#c2478a);color:#fff;border:2px solid transparent}
+.btn-outline{background:#fff;color:var(--purple);border:2px solid var(--purple)}
+section.block{padding:70px 6%;max-width:1150px;margin:0 auto}
+.label{color:var(--pink);font-weight:600;font-size:.95rem;margin-bottom:6px}
+h2{color:var(--purple);font-size:clamp(1.6rem,3.5vw,2.3rem);margin-bottom:12px}
+.lead{color:var(--muted);max-width:700px;margin-bottom:34px}
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.card .emoji{font-size:1.9rem;display:block;margin-bottom:8px}
+.card h3{color:var(--purple);margin-bottom:6px;font-size:1.15rem}
+.card p{color:var(--muted)}
+.obj p{color:var(--text)}
+.week{cursor:pointer;text-align:left;font:inherit;width:100%;transition:.2s}
+.week:hover,.week:focus-visible{transform:translateY(-4px);box-shadow:0 10px 24px rgba(91,42,134,.15);border-color:var(--pink);outline:none}
+.week .wn{color:var(--pink);font-weight:700;font-size:.9rem;display:block;margin-bottom:4px}
+.week .wt{color:var(--purple);font-weight:700;font-size:1.15rem;display:block;margin-bottom:6px}
+.week .wd{color:var(--muted);font-size:.95rem;display:block}
+#weekPage{display:none;max-width:900px;margin:0 auto;padding:50px 6% 70px}
+#weekPage .btn{margin-bottom:26px;padding:10px 22px}
+#weekPage h2{margin-bottom:8px}
+.days{display:grid;gap:18px;margin-top:30px}
+.day h3{color:var(--purple);margin-bottom:8px}
+.day p{margin-bottom:4px}
+.day p b{color:var(--pink)}
+.day img{width:100%;border-radius:14px;margin-top:14px;display:block}
+.empty{color:var(--muted);font-style:italic}
+footer{background:linear-gradient(90deg,#5b2a86,#c2478a);color:#fff;text-align:center;padding:36px 6%;margin-top:30px}
+footer b{font-size:1.15rem;display:block}
+footer span{display:block;opacity:.92;margin-top:4px}
+@media(max-width:600px){header{justify-content:center;text-align:center}.hero{padding:60px 6% 55px}section.block{padding:50px 6%}nav button{padding:6px 14px;font-size:.85rem}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand" onclick="goTo('home')"><b>She Rises</b><small>Women Empowerment CSP</small></div>
+  <nav>
+    <button onclick="goTo('home')">Home</button>
+    <button onclick="goTo('about')">About</button>
+    <button onclick="goTo('objectives')">Objectives</button>
+    <button onclick="goTo('weeks')">Weeks</button>
+  </nav>
+</header>
+
+<main id="mainPage">
+  <div class="hero" id="home">
+    <p class="tag">Community Service Project · 8 Weeks</p>
+    <h1>Empowering Women.<br>Building Stronger Communities.</h1>
+    <p class="intro">A community initiative to understand women's needs, spread awareness, encourage education, support health and safety, and promote financial independence.</p>
+    <div class="btns">
+      <a class="btn btn-primary" href="#weeks">Explore Weekly Activities ↓</a>
+      <a class="btn btn-outline" href="#about">Discover Our Project</a>
+    </div>
+  </div>
+
+  <section class="block" id="about">
+    <p class="label">About the project</p>
+    <h2>Every Woman Deserves an Opportunity</h2>
+    <p class="lead">Women empowerment means helping women gain knowledge, confidence, equal opportunities, safety and the ability to make decisions about their lives.</p>
+    <div class="grid g3">
+      <div class="card"><span class="emoji">🌱</span><h3>Our Vision</h3><p>To create an aware, confident and supportive community where every woman can learn, grow and participate equally.</p></div>
+      <div class="card"><span class="emoji">🤝</span><h3>Our Mission</h3><p>To interact with women, understand local challenges and provide awareness about education, health, rights and opportunities.</p></div>
+      <div class="card"><span class="emoji">💗</span><h3>Our Approach</h3><p>Community visits, conversations, surveys, awareness activities, documentation and a useful mini project.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="objectives">
+    <p class="label">What we work towards</p>
+    <h2>Project Objectives</h2>
+    <div class="grid g4" style="margin-top:28px">
+      <div class="card obj"><span class="emoji">📚</span><p>Promote girls' and women's education.</p></div>
+      <div class="card obj"><span class="emoji">🩺</span><p>Spread awareness about health, hygiene and nutrition.</p></div>
+      <div class="card obj"><span class="emoji">💼</span><p>Encourage skill development and employment.</p></div>
+      <div class="card obj"><span class="emoji">🏦</span><p>Create awareness about savings and financial independence.</p></div>
+      <div class="card obj"><span class="emoji">⚖️</span><p>Share information about women's rights and safety.</p></div>
+      <div class="card obj"><span class="emoji">🏛️</span><p>Introduce government schemes and welfare programmes.</p></div>
+      <div class="card obj"><span class="emoji">🗣️</span><p>Encourage confidence and leadership.</p></div>
+      <div class="card obj"><span class="emoji">🌸</span><p>Understand community needs and suggest solutions.</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="weeks">
+    <p class="label">Our CSP journey</p>
+    <h2>8 Weeks of Community Activities</h2>
+    <p class="lead">Click a week to view its six days of activities and photographs.</p>
+    <div class="grid g4" id="weekGrid"></div>
+  </section>
+</main>
+
+<main id="weekPage"></main>
+
+<footer>
+  <b>She Rises · Women Empowerment CSP</b>
+  <span>Learn · Empower · Support · Transform</span>
+  <span>A Community Service Project</span>
+</footer>
+
+<script>
+/* ---------- WEEK DATA ----------
+   To add a photo, set img on a day, e.g. img:"photos/week1-day1.jpg"
+   (upload the photo to your GitHub repo next to index.html).
+   Week 8: replace title/desc and add days when ready. */
+const weeks = [
+ {title:"Sachivalayam Visit", desc:"Understanding government services and women's welfare schemes.", days:[
+  {t:"Introduction",a:"Visited Sachivalayam.",l:"Basic services.",img:""},
+  {t:"Staff Meeting",a:"Met Sachivalayam staff.",l:"Staff responsibilities.",img:""},
+  {t:"Women Schemes",a:"Collected scheme details.",l:"Women's welfare.",img:""},
+  {t:"Government Benefits",a:"Explored public benefits.",l:"Available support.",img:""},
+  {t:"Application Process",a:"Observed application procedures.",l:"Required documents.",img:""},
+  {t:"Documentation",a:"Prepared visit report.",l:"Community awareness.",img:""}]},
+ {title:"Government Girls School Visit", desc:"Understanding girls' education, awareness, and opportunities for a better future.", days:[
+  {t:"School Introduction",a:"Visited government girls school.",l:"School environment.",img:""},
+  {t:"Student Interaction",a:"Interacted with girl students.",l:"Their interests.",img:""},
+  {t:"Education Awareness",a:"Discussed girls' education.",l:"Importance of education.",img:""},
+  {t:"Health Awareness",a:"Shared basic health awareness.",l:"Personal hygiene.",img:""},
+  {t:"Career Guidance",a:"Discussed future opportunities.",l:"Career awareness.",img:""},
+  {t:"Activity & Review",a:"Conducted awareness activities.",l:"Confidence and learning.",img:""}]},
+ {title:"Women Police Station", desc:"Visited the Women Police Station to understand women's protection services.", days:[
+  {t:"Police Station Visit",a:"Visited Women Police Station.",l:"Police services.",img:""},
+  {t:"Officers Interaction",a:"Interacted with officers.",l:"Their duties.",img:""},
+  {t:"Women Safety",a:"Discussed safety measures.",l:"Women's protection.",img:""},
+  {t:"Legal Awareness",a:"Learned about legal support.",l:"Women's rights.",img:""},
+  {t:"Safety Officer Meeting",a:"Interacted with safety officers.",l:"How to seek help.",img:""},
+  {t:"Group Photo & Report",a:"Took group photos and prepared notes.",l:"Importance of legal awareness.",img:""}]},
+ {title:"Anganwadi Centre", desc:"Explored nutrition and health services at Anganwadi.", days:[
+  {t:"Centre Visit",a:"Visited Anganwadi centre.",l:"Anganwadi services.",img:""},
+  {t:"Nutrition Awareness",a:"Learned about healthy food.",l:"Healthy nutrition.",img:""},
+  {t:"Staff Discussion",a:"Discussed with staff.",l:"Their responsibilities.",img:""},
+  {t:"Health Awareness",a:"Observed health activities.",l:"Health importance.",img:""},
+  {t:"Women Interaction",a:"Interacted with women.",l:"Community health needs.",img:""},
+  {t:"Documentation",a:"Collected photos and details.",l:"Health awareness.",img:""}]},
+ {title:"Women Safety Awareness", desc:"Visited local houses to spread awareness about women's safety.", days:[
+  {t:"Local Area Visit",a:"Visited nearby houses.",l:"Community needs.",img:""},
+  {t:"Women Interaction",a:"Interacted with women.",l:"Safety concerns.",img:""},
+  {t:"Group Discussion",a:"Discussed women's safety.",l:"Safety awareness.",img:""},
+  {t:"Safety App Awareness",a:"Explained safety apps.",l:"Digital safety.",img:""},
+  {t:"Women Group Meeting",a:"Conducted group interaction.",l:"Unity and support.",img:""},
+  {t:"Documentation",a:"Collected photos and details.",l:"Women's protection.",img:""}]},
+ {title:"Court Visit", desc:"Visited the court to understand women's legal rights, justice, and legal support.", days:[
+  {t:"Court Visit",a:"Visited the local court.",l:"About court activities.",img:""},
+  {t:"Court Observation",a:"Observed court proceedings.",l:"How courts work.",img:""},
+  {t:"Lawyer Interaction",a:"Interacted with a lawyer.",l:"About legal rights.",img:""},
+  {t:"Women Legal Rights",a:"Learned about women's rights.",l:"Women's legal protection.",img:""},
+  {t:"Legal Awareness",a:"Collected legal information.",l:"How to get justice.",img:""},
+  {t:"Documentation",a:"Prepared notes and photos.",l:"Importance of legal awareness.",img:""}]},
+ {title:"Women Independence", desc:"Created awareness about women's financial independence, self-confidence, and employment opportunities.", days:[
+  {t:"Women Interaction",a:"Interacted with local women.",l:"Women's needs.",img:""},
+  {t:"Skill Awareness",a:"Explained skill development.",l:"Importance of skills.",img:""},
+  {t:"Employment Awareness",a:"Discussed job opportunities.",l:"Employment options.",img:""},
+  {t:"Financial Awareness",a:"Explained saving money.",l:"Money management.",img:""},
+  {t:"Self-Employment",a:"Discussed small businesses.",l:"Business opportunities.",img:""},
+  {t:"Documentation",a:"Collected photos and details.",l:"",img:""}]},
+ {title:"Title to be added", desc:"Description to be added.", days:[]}
+];
+
+const mainPage = document.getElementById("mainPage");
+const weekPage = document.getElementById("weekPage");
+const grid = document.getElementById("weekGrid");
+
+function el(tag, cls, text){
+  const e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(text !== undefined) e.textContent = text;
+  return e;
+}
+
+weeks.forEach((w, i) => {
+  const b = el("button", "card week");
+  b.appendChild(el("span", "wn", "Week " + (i + 1)));
+  b.appendChild(el("span", "wt", w.title));
+  b.appendChild(el("span", "wd", w.desc));
+  b.onclick = () => openWeek(i);
+  grid.appendChild(b);
+});
+
+function openWeek(i){
+  const w = weeks[i];
+  weekPage.innerHTML = "";
+  const back = el("button", "btn btn-outline", "← All Weeks");
+  back.onclick = () => goTo("weeks");
+  weekPage.appendChild(back);
+  weekPage.appendChild(el("p", "label", "Week " + (i + 1)));
+  weekPage.appendChild(el("h2", "", w.title));
+  weekPage.appendChild(el("p", "lead", w.desc));
+  const days = el("div", "days");
+  if(!w.days.length){
+    days.appendChild(el("p", "empty", "Activities for this week will be added soon."));
+  }
+  w.days.forEach((d, n) => {
+    const c = el("div", "card day");
+    c.appendChild(el("h3", "", "Day " + (n + 1) + ": " + d.t));
+    const a = el("p"); a.appendChild(el("b", "", "Activity: ")); a.appendChild(document.createTextNode(d.a));
+    c.appendChild(a);
+    if(d.l){
+      const l = el("p"); l.appendChild(el("b", "", "What we learned: ")); l.appendChild(document.createTextNode(d.l));
+      c.appendChild(l);
+    }
+    if(d.img){
+      const im = el("img"); im.src = d.img; im.alt = "Day " + (n + 1) + ": " + d.t; im.loading = "lazy";
+      c.appendChild(im);
+    }
+    days.appendChild(c);
+  });
+  weekPage.appendChild(days);
+  mainPage.style.display = "none";
+  weekPage.style.display = "block";
+  window.scrollTo({top:0, behavior:"auto"});
+}
+
+function goTo(id){
+  weekPage.style.display = "none";
+  mainPage.style.display = "block";
+  const t = document.getElementById(id);
+  if(id === "home") window.scrollTo({top:0, behavior:"smooth"});
+  else if(t) t.scrollIntoView({behavior:"smooth"});
+}
+</script>
+</body>
+</html>
